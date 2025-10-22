@@ -9,5 +9,12 @@
     {{> nav}}
     
     <h1>{{message}}</h1>
+
+    <div>
+        <ul>
+            {{#each users}}
+                <li>{{this.username}}</li>
+            {{/each}}
+    </div>
 </body>
 </html>

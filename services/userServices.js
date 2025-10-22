@@ -18,6 +18,25 @@ function saveUser(username, hashedPassword) {
     }
 }
 
+function getUser(username) {
+    const usersFilePath = './users.json';
+    const users = fs.readFileSync(usersFilePath, 'utf-8');
+    
+    if(!users) {
+        console.log('User not found!');
+        return null
+    }
+    else {
+        const usersArray = JSON.parse(users);
+        const currentUser = usersArray.find(u => u.username === username);
+        if(!currentUser) {
+            console.log('User not found!')
+            return null;
+        }
+        return currentUser;
+    }
+}
+
 function getUsers() {
     const usersFilePath = './users.json';
     if (fs.existsSync(usersFilePath)) {
@@ -29,5 +48,6 @@ function getUsers() {
 
 module.exports = {
     saveUser,
-    getUsers
+    getUsers,
+    getUser
 };
