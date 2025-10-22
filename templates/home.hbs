@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+<body>
+    {{> nav}}
+    
+    <h1>{{message}}</h1>
+
+    <div>
+        <ul>
+            {{#each users}}
+                <li>{{this.username}}</li>
+            {{/each}}
+    </div>
+</body>
+</html>
