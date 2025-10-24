@@ -1,9 +1,8 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-function isUser(req, res, next) {
-    const token = req.cookies.token;
+function isAdmin(req, res, next) {
 
+    const token = req.cookies.token;
     if (!token) {
         console.log('No token provided!')
         return res.status(403).redirect('/auth/login');
@@ -11,13 +10,17 @@ function isUser(req, res, next) {
 
     try {
         const data = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = data;
+        if (data.role === 'admin') {
+            next(); 
+        } else {
+            return res.status(403).send('Access denied. Admins only.');
+        }
 
-        next(); 
+
     } catch (err) {
         console.log('Invalid or expired token')
         return res.status(403).redirect('/auth/login');
     }
 }
 
-module.exports = isUser;
+module.exports = isAdmin;

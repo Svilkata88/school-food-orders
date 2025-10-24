@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-function saveUser(username, hashedPassword) {
-    const user = { username, password: hashedPassword };
+function saveUser(username, hashedPassword, role='user') {
+    const user = { username, password: hashedPassword, role };
     const usersFilePath = './users.json';
 
     const users = fs.readFileSync(usersFilePath, 'utf-8');
@@ -40,10 +40,18 @@ function getUser(username) {
 function getUsers() {
     const usersFilePath = './users.json';
     if (fs.existsSync(usersFilePath)) {
-        const usersData = fs.readFileSync(usersFilePath, 'utf-8');
-        return JSON.parse(usersData);
+            const usersData = fs.readFileSync(usersFilePath, 'utf-8');
+            if (usersData.trim().length === 0) {
+                // file exists but is empty
+                return [];
+            }
+            try {
+                return JSON.parse(usersData);
+            } catch (err) {
+                console.error('Invalid JSON in users.json:', err.message);
+                return [];
+            }
     }
-    return [];
 }
 
 module.exports = {

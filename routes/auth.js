@@ -20,12 +20,13 @@ authRouter.post('/login', async (req, res) => {
     }
 
     const user = getUser(username); // return user if exists in DB
+   
     if (!user) {
-        res.render('auth/register', { title: 'Register Page', message: 'Create a new account.' });
+        return res.render('auth/register', { title: 'Register Page', message: 'Create a new account.' });
     }
     const isMatch = await becrypt.compare(password, user.password);
     if (!isMatch) {
-        res.render('auth/login', { 
+        return res.render('auth/login', { 
             title: 'Login Page', 
             message: 'Please log in to continue.',
             error: 'Username or password incorrect! Try again.'
@@ -33,7 +34,7 @@ authRouter.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign(
-        { username }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { username, role: user.role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {
@@ -69,7 +70,12 @@ authRouter.post('/register', async (req, res) => {
     }
 
     const hashedPass = await becrypt.hash(password, Number(process.env.SALT));
-    saveUser(username, hashedPass);
+    if(username === 'admin') {
+        const role = 'admin';
+        saveUser(username, hashedPass, role);
+    } else {
+        saveUser(username, hashedPass);
+    } 
 
     const token = jwt.sign(
         { username }, process.env.JWT_SECRET, { expiresIn: '2h' }             

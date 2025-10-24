@@ -12,9 +12,11 @@
 
     <div>
         <ul>
-            {{#each users}}
-                <li>Username: <strong>{{this.username}}</strong> | role: <strong>{{this.role}}</strong></li>
+            {{#each menus}}
+                <h2>{{this.name}}</h2>
+                <p>{{this.description}}</p>
             {{/each}}
     </div>
 </body>
+
 </html>

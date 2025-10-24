@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
 const { create } = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const {getUsers} = require('./services/userServices');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
+const menusRouter = require('./routes/menus');
 
 
 const hbs = create({
@@ -24,6 +24,7 @@ app.use(cookieParser());
 
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
+app.use('/menus', menusRouter);
 
 app.get('/', (req, res) => {
     const currentUser = req.user ? req.user : 'Anonymous User'
@@ -36,7 +37,7 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(Number(process.env.PORT), () => {
+  console.log(`Server is running on http://localhost:${Number(process.env.PORT)}`);
 });
 

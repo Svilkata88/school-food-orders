@@ -6,3 +6,4 @@ node_modules/
 
 # Ignore local data
 users.json
+menus.json
