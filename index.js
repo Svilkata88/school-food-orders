@@ -7,12 +7,16 @@ const {getUsers} = require('./services/userServices');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const menusRouter = require('./routes/menus');
+const {getUserFromToken} = require('./utils');
 
 
 const hbs = create({
   extname: 'hbs',
   defaultLayout: false,
-  partialsDir: path.join(__dirname, 'templates', 'partials')
+  partialsDir: path.join(__dirname, 'templates', 'partials'),
+  helpers: {
+    eq: (a, b) => a === b
+  }
 });
 
 app.engine('hbs', hbs.engine);
@@ -27,12 +31,16 @@ app.use('/users', usersRouter);
 app.use('/menus', menusRouter);
 
 app.get('/', (req, res) => {
-    const currentUser = req.user ? req.user : 'Anonymous User'
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);
     const users = getUsers();
+    
     res.render('home', { 
         title: 'Home Page', 
-        message: `Welcome to the Home Page ${currentUser}!`, 
-        users });
+        message: `Welcome to the Home Page ${currentUser ? currentUser.username : 'Anonymous User'}!`, 
+        users,
+        currentUser
+       });
 });
 
 

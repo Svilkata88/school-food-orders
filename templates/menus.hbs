@@ -10,12 +10,21 @@
     
     <h1>{{message}}</h1>
 
+    {{#if (eq currentUser.role "owner")}}
+        <a href="#">Create new menu</a>
+    {{/if}}
+
     <div>
         <ul>
             {{#each menus}}
-                <h2>{{this.name}}</h2>
+            <li>
+                <a href="/menus/{{this.name}}">
+                    <h2>{{this.name}}</h2>
+                </a>
                 <p>{{this.description}}</p>
+            </li>
             {{/each}}
+        </ul>
     </div>
 </body>
 

@@ -7,11 +7,13 @@
 </head>
 <body>
     {{> nav}}
+    
+    <h1>{{menu.name}}</h1>
 
-    {{#if (eq currentUser.role "admin")}}
-        <li><a href="/users">Users</a></li>
-    {{/if}}
-
-    <h1>{{message}}</h1>
+    <div>
+        <p>{{menu.description}}</p>
+    </div>
+    
 </body>
+
 </html>
