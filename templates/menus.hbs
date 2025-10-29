@@ -20,7 +20,10 @@
     <div>
         <ul>
             {{#each menus}}
-                <h2>{{this.menuTitle}}</h2>
+                <a href="/menus/{{this.menuTitle}}">
+                    <h2>{{this.menuTitle}}</h2>
+                </a>
+                
                 <ul>
                     {{#each this.days}}
                         <li>{{this}}</li>
