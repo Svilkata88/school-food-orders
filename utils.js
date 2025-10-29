@@ -1,3 +1,18 @@
+
+const jwt = require('jsonwebtoken');
+
+function getUserFromToken(token) {
+    if (token) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET);
+                return decoded; 
+            } catch (err) {
+                console.log('Invalid or expired token');
+                return null;
+            }
+        }
+}
+
 function addMenuRow() {
     const form = document.getElementById('create-menu-form');
     const addFieldsContainer = document.getElementById('additional-fields-container');
@@ -16,5 +31,7 @@ function addMenuRow() {
 }
 
 module.exports = {
-    addMenuRow,
-}
+    getUserFromToken,
+    addMenuRow
+};
+

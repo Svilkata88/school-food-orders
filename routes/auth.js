@@ -44,13 +44,8 @@ authRouter.post('/login', async (req, res) => {
         maxAge: 2 * 60 * 60 * 1000 // 2 hours
     });
 
-    res.render('/', ()=> {  
-        const currentUser = req.user ? req.user : 'Anonymous User'
-        res.render('home', { 
-            title: 'Home Page', 
-            message: `Welcome to the Home Page ${user.username}!`
-        })
-    });
+    const users = getUsers();
+    res.redirect('/');
 });
 
 authRouter.get('/register', (req, res) => {
@@ -58,7 +53,7 @@ authRouter.get('/register', (req, res) => {
 })
 
 authRouter.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     
     if(!username || !password) {
         return res.render('auth/login', { 
@@ -66,6 +61,8 @@ authRouter.post('/register', async (req, res) => {
             message: 'Please log in to continue.' , 
             error: 'Please enter both username and password.' });  
     }
+
+    // Check if we already have this user
     const user = getUser(username);
     if(user) {
         return res.render('auth/login', { 
@@ -74,16 +71,23 @@ authRouter.post('/register', async (req, res) => {
             error: 'This username already exists.' });
     }
 
+    console.log(role);
     const hashedPass = await becrypt.hash(password, Number(process.env.SALT));
     if(username === 'admin') {
         const role = 'admin';
         saveUser(username, hashedPass, role);
-    } else {
+    } 
+    else if(role === 'owner') {
+        console.log(req.body.role)
+        const role = 'owner';
+        saveUser(username, hashedPass, role);
+    } 
+    else {
         saveUser(username, hashedPass);
     } 
 
     const token = jwt.sign(
-        { username }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {

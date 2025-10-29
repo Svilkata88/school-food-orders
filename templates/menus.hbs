@@ -10,10 +10,12 @@
     
     <h1>{{message}}</h1>
 
-    <form action="/menus/create-menu" method="GET">
-        <button type="submit">Create Menu</button>
-    </form>
 
+    {{#if (eq currentUser.role "owner")}}
+        <form action="/menus/create-menu" method="GET">
+            <button type="submit">Create Menu</button>
+        </form>
+    {{/if}}
 
     <div>
         <ul>
@@ -25,6 +27,7 @@
                     {{/each}}
                 </ul>
             {{/each}}
+        </ul>
     </div>
 </body>
 
