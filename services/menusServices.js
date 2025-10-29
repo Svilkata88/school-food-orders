@@ -17,7 +17,26 @@ function getMenus() {
     }
 }
 
+function saveMenu(menuTitle, days) {
+    const menusFilePath = './menus.json';
+    const menu = { menuTitle, days};
+
+    const menus = fs.readFileSync(menusFilePath, 'utf-8');
+    
+    if(!menus) {
+        fs.writeFileSync(menusFilePath, JSON.stringify([menu], null, 2));
+        console.log('First menu saved successfully.');
+    }
+    else {
+        const menusArray = JSON.parse(menus);
+        menusArray.push(menu);
+        fs.writeFileSync(menusFilePath, JSON.stringify(menusArray, null, 2));
+        console.log('Menu added successfully.');
+    }
+}
+
 
 module.exports = {
-    getMenus
+    getMenus,
+    saveMenu,
 };

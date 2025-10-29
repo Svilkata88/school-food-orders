@@ -44,8 +44,13 @@ authRouter.post('/login', async (req, res) => {
         maxAge: 2 * 60 * 60 * 1000 // 2 hours
     });
 
-    const users = getUsers();
-    res.render('users', { title: 'Users', message: 'All users listed.', users });
+    res.render('/', ()=> {  
+        const currentUser = req.user ? req.user : 'Anonymous User'
+        res.render('home', { 
+            title: 'Home Page', 
+            message: `Welcome to the Home Page ${user.username}!`
+        })
+    });
 });
 
 authRouter.get('/register', (req, res) => {

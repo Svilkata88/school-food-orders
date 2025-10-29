@@ -10,11 +10,20 @@
     
     <h1>{{message}}</h1>
 
+    <form action="/menus/create-menu" method="GET">
+        <button type="submit">Create Menu</button>
+    </form>
+
+
     <div>
         <ul>
             {{#each menus}}
-                <h2>{{this.name}}</h2>
-                <p>{{this.description}}</p>
+                <h2>{{this.menuTitle}}</h2>
+                <ul>
+                    {{#each this.days}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
             {{/each}}
     </div>
 </body>
