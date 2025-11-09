@@ -1,48 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
-<body>
-    {{> nav}}
+ 
+<h1>{{message}}</h1>
+
+<form action="create-menu" method="POST" id="create-menu-form">
+    <button type="button" onclick="addMenuRow()">Add days</button>
+    <div class="form-menu-title">
+        <label for="menu-title">Menu for</label>
+        <input type="text" id="menu-title" name="menuTitle" required>   
+    </div>
     
-    <h1>{{message}}</h1>
+    <div id="additional-fields-container">
+    </div>
 
-    <form action="create-menu" method="POST" id="create-menu-form">
-        <button type="button" onclick="addMenuRow()">Add days</button>
-        <div class="form-menu-title">
-            <label for="menu-title">Menu for</label>
-            <input type="text" id="menu-title" name="menuTitle" required>   
-        </div>
-        
-        <div id="additional-fields-container">
-        </div>
+    <button type="submit">Create</button>
+</form>
 
-        <button type="submit">Create</button>
-    </form>
-</body>
-
-<script>
-    function addMenuRow() {
-        const fieldsContainer = document.getElementById('additional-fields-container');
-        const addFieldsContainer = document.getElementById('additional-fields-container');
-
-        const divWrapper = document.createElement('div');
-        divWrapper.className = 'row-container';
-
-        const label = document.createElement('label');
-        label.htmlFor = 'row-day';
-        label.innerText = 'day';
-        const input = document.createElement('input');
-        input.id = 'row-day';
-        input.name = 'days[]';
-        divWrapper.append(label, input);
-
-        fieldsContainer.appendChild(divWrapper);
-    }
-    
-</script>
-
-</html>
+{{>script}}

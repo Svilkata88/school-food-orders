@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
-<body>
-    {{> nav}}
-    
-    <h1>{{message}}</h1>
 
-    {{#if error}}
-        <p class="error" style="color: red;">{{error}}</p>
-    {{/if}}
 
-    <form action="/auth/login" method="POST">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" >
-        </div>
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+<h1>{{message}}</h1>
+
+{{#if error}}
+    <p class="error" style="color: red;">{{error}}</p>
+{{/if}}
+
+<form action="/auth/login" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" >
+    </div>
+    <button type="submit">Login</button>
+</form>
+

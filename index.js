@@ -7,12 +7,13 @@ const {getUsers} = require('./services/userServices');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const menusRouter = require('./routes/menus');
-const {getUserFromToken} = require('./utils');
+const {getUserFromToken} = require('./services/utils');
 
 
 const hbs = create({
   extname: 'hbs',
-  defaultLayout: false,
+  defaultLayout: 'main', 
+  layoutsDir: path.join(__dirname, 'templates', 'layouts'),
   partialsDir: path.join(__dirname, 'templates', 'partials'),
   helpers: {
     eq: (a, b) => a === b
@@ -25,6 +26,8 @@ app.set('views', path.join(__dirname, 'templates'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.use(express.static('public'));
 
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);

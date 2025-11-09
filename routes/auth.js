@@ -48,6 +48,12 @@ authRouter.post('/login', async (req, res) => {
     res.redirect('/');
 });
 
+authRouter.get('/logout', async (req, res) => {
+
+    res.clearCookie('token');
+    res.redirect('/auth/login');
+});
+
 authRouter.get('/register', (req, res) => {
     res.render('auth/register', { title: 'Register Page', message: 'Create a new account.' });
 })
@@ -71,7 +77,6 @@ authRouter.post('/register', async (req, res) => {
             error: 'This username already exists.' });
     }
 
-    console.log(role);
     const hashedPass = await becrypt.hash(password, Number(process.env.SALT));
     if(username === 'admin') {
         const role = 'admin';

@@ -1,9 +1,22 @@
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/register">Register</a></li>
-        <li><a href="/menus">Weekly Menus</a></li>
+        {{#if currentUser}}
+            <li><a href="/users/{{currentUser.username}}">Profile</a></li>
+        {{else}}
+            <li><a href="/auth/login">Login</a></li>
+            <li><a href="/auth/register">Register</a></li>
+        {{/if}}
         
+        <li><a href="/menus">Weekly menus</a></li> 
     </ul>
+
+    <div id="user-info">
+        {{#if currentUser}}
+            <span id="user"><strong>{{currentUser.username}}</strong></span>
+            <a href="/auth/logout">Logout</a>
+        {{else}}
+            <span>You are not logged in.</span>
+        {{/if}}
+    </div>
 </nav>

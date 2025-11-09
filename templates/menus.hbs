@@ -1,37 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
-<body>
-    {{> nav}}
-    
-    <h1>{{message}}</h1>
+
+<h1>{{message}}</h1>
 
 
-    {{#if (eq currentUser.role "owner")}}
-        <form action="/menus/create-menu" method="GET">
-            <button type="submit">Create Menu</button>
-        </form>
-    {{/if}}
+{{#if (eq currentUser.role "owner")}}
+    <form id="create-menu" action="/menus/create-menu" method="GET">
+        <button class="create-btn" type="submit">Create Menu</button>
+    </form>
+{{/if}}
 
-    <div>
-        <ul>
-            {{#each menus}}
-                <a href="/menus/{{this.menuTitle}}">
-                    <h2>{{this.menuTitle}}</h2>
-                </a>
-                
-                <ul>
-                    {{#each this.days}}
-                        <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            {{/each}}
-        </ul>
-    </div>
-</body>
+<div>
+    <ul>
+        {{#each menus}}
+            <a href="/menus/{{this.menuTitle}}">
+                <h2>{{this.menuTitle}}</h2>
+            </a>
+        {{/each}}
+    </ul>
+</div>
 
-</html>

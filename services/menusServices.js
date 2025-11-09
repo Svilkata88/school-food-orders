@@ -17,23 +17,34 @@ function getMenus() {
     }
 }
 
-function saveMenu(menuTitle, days) {
-    const menusFilePath = './menus.json';
-    const menu = { menuTitle, days};
+function saveMenu(menuTitle, days, creator) {
+  const menusFilePath = './menus.json';
+  const menu = { menuTitle, days, creator };
 
-    const menus = fs.readFileSync(menusFilePath, 'utf-8');
-    
-    if(!menus) {
-        fs.writeFileSync(menusFilePath, JSON.stringify([menu], null, 2));
-        console.log('First menu saved successfully.');
-    }
-    else {
-        const menusArray = JSON.parse(menus);
-        menusArray.push(menu);
-        fs.writeFileSync(menusFilePath, JSON.stringify(menusArray, null, 2));
-        console.log('Menu added successfully.');
-    }
+  // Read current menus
+  let menus = [];
+  if (fs.existsSync(menusFilePath)) {
+    const fileData = fs.readFileSync(menusFilePath, 'utf-8');
+    menus = fileData ? JSON.parse(fileData) : [];
+  }
+
+  // Find existing menu
+  const index = menus.findIndex(m => m.menuTitle === menuTitle);
+
+  if (index !== -1) {
+    // ✅ Update existing
+    menus[index].days = days;
+    console.log(`Updated menu "${menuTitle}"`);
+  } else {
+    // ✅ Add new
+    menus.push(menu);
+    console.log(`Added new menu "${menuTitle}"`);
+  }
+
+  // ✅ Save changes every time
+  fs.writeFileSync(menusFilePath, JSON.stringify(menus, null, 2));
 }
+
 
 
 module.exports = {

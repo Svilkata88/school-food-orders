@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-</head>
-<body>
-    {{> nav}}
-    
-    <h1>{{menu.menuTitle}}</h1>
+<h1>{{menu.menuTitle}}</h1>
 
-    <div>
-        <ul>
-            {{#each menu.days}}
-                <li>{{this}}</li>
-            {{/each}}
-        </ul>
-    </div>
-    
-</body>
+<div>
+    {{#if (eq currentUser.username menu.creator)}}  
+    <button class="create-btn" type="button" onclick="window.location.href='/menus/{{menu.menuTitle}}/edit'">
+        edit
+    </button>
+    {{/if}}
+    <ul class="items-list">
+        {{#each menu.days}}
+            <a href="/menus/{{../menu.menuTitle}}/{{@index}}">{{this}}</a>
+        {{/each}}
+    </ul>
+</div> 
 
-</html>
