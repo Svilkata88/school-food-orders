@@ -1,18 +1,22 @@
 body {
-    background-color: #7ec0d8;
+    /* background-color: #7ec0d8; */
+    background-image: url('./images/foodbg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    color: #353b42;
+    color: #fff;
     text-align: center;
 }
 
 a {
   text-decoration: none;
-  color: #353b42;
+  color: #fff;
 }
 
 body a:hover {
@@ -22,8 +26,10 @@ body a:hover {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: #40474f;
-    color: white;
+    /* background-color: #40474f; */
+    color:beige;
+    font-size: 1.2rem;
+    font-weight: bold;
     min-height: 50px;
     align-items: center;
     padding: 0 30px;
@@ -42,7 +48,7 @@ nav a {
   text-decoration: none; 
 }
 nav a:hover {
-  color: #7ec0d8;
+  color:#9acfe3;
 }
 #user-info {
     display: flex;
@@ -58,7 +64,7 @@ nav a:hover {
     box-sizing: border-box;
 }
 .body-content {
-    border: 4px solid white;
+    border: 2px solid white;
     flex: 1; 
     box-sizing: border-box;
     padding: 30px;
