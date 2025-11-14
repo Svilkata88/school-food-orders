@@ -6,7 +6,7 @@ const {saveUser, getUser, getUsers} = require('../services/userServices');
 
 
 authRouter.get('/login', (req, res) => {
-    res.render('auth/login', { title: 'Login Page', message: 'Please log in to continue.' });
+    res.render('auth/login', { title: 'Login Page', message: 'Login' });
 });
 
 authRouter.post('/login', async (req, res) => {
@@ -15,7 +15,7 @@ authRouter.post('/login', async (req, res) => {
     if(!username || !password) {
         return res.render('auth/login', { 
             title: 'Login Page', 
-            message: 'Please log in to continue.' , 
+            message: 'Login' , 
             error: 'Please enter both username and password.' });  
     }
 
