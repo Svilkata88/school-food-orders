@@ -1,16 +1,15 @@
   
 <h1>{{menu.menuTitle}}</h1>
 
-<form action="/menus/{{menu.menuTitle}}" method="POST" id="create-menu-form">
+<form action="/menus/{{menu.menuTitle}}" method="POST" id="create-menu-form" class="day-menu">
     <button class="create-btn" type="button" onclick="addMenuRow()">Add days</button>
     
     <div class="form-menu-title">             
     </div>
     
-    <div class="items-list" id="additional-fields-container">
+    <div class="items-list" id="additional-fields-container"> 
         {{#each menu.days}}
             <div class="form-menu-day">
-                <label>day</label>
                 <input type="text" name="days" value="{{this}}" required>
             </div> 
         {{/each}}

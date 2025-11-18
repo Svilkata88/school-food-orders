@@ -12,7 +12,6 @@ usersRouter.get('/', isUser, isAdmin, (req, res) => {
 })
 
 usersRouter.get('/:user', isUser, (req, res) => {
-    console.log(req.params.user);
     const token = req.cookies['token'];
     const currentUser = getUserFromToken(token);
     if(!currentUser){

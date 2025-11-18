@@ -7,7 +7,7 @@ function addMenuRow() {
 
     // label
     const label = document.createElement('label');
-    label.innerText = 'day ';
+    // label.innerText = 'day ';
 
     // input
     const input = document.createElement('input');

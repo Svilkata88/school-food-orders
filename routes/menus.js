@@ -10,7 +10,7 @@ menusRouter.get('/', isUser, (req, res) => {
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);
 
-    res.render('menus', { title: 'Menus', message: 'Weekly menus.', menus, currentUser });
+    res.render('menus', { title: 'Menus', message: 'Weekly menus', menus, currentUser });
 })
 
 menusRouter.get('/create-menu', isUser, (req, res) => {
@@ -26,6 +26,17 @@ menusRouter.post('/create-menu', isUser, (req, res) => {
     res.redirect('/menus');
 })
 
+menusRouter.get('/:menuTitle/edit', isUser, (req, res) => {
+    const { menuTitle } = req.params;
+    const menus = getMenus();
+    const menu = menus.find(m => m.menuTitle === menuTitle);
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);
+    if (!menu) {
+        return res.status(404).render('404', { title: 'Menu Not Found', message: 'The requested menu was not found.', currentUser });
+    }
+    res.render('edit-menu', { title: menu.menuTitle, message: menu.days, menu, currentUser });
+})
 
 menusRouter.get('/:menuTitle/:index', isUser, (req, res) => {
     let { menuTitle, index  } = req.params;
@@ -37,10 +48,10 @@ menusRouter.get('/:menuTitle/:index', isUser, (req, res) => {
     const menu = menus.find(m => m.menuTitle === menuTitle);
     const day = menu.days[index];
     if (!menu) {
-        return res.status(404).render('404', { title: 'Menu Not Found', message: 'The requested menu was not found.' });
+        return res.status(404).render('404', { title: 'Menu Not Found', message: 'The requested menu was not found.',currentUser });
     }
     if (!day) {
-        return res.status(404).render('404', { title: 'Day Not Found', message: 'The requested day was not found in this menu.' });
+        return res.status(404).render('404', { title: 'Day Not Found', message: 'The requested day was not found in this menu.', currentUser });
     }
     res.render('day-menu', { title: day, currentUser });
 })
@@ -56,17 +67,6 @@ menusRouter.get('/:menuTitle', isUser, (req, res) => {
         return res.status(404).render('404', { title: 'Menu Not Found', message: 'The requested menu was not found.' });
     }
     res.render('menu', { title: menu.menuTitle, message: menu.days, menu, currentUser });
-})
-
-
-menusRouter.get('/:menuTitle/edit', isUser, (req, res) => {
-    const { menuTitle } = req.params;
-    const menus = getMenus();
-    const menu = menus.find(m => m.menuTitle === menuTitle);
-    if (!menu) {
-        return res.status(404).render('404', { title: 'Menu Not Found', message: 'The requested menu was not found.' });
-    }
-    res.render('edit-menu', { title: menu.menuTitle, message: menu.days, menu });
 })
 
 menusRouter.post('/:menuTitle', isUser, (req, res) => {
@@ -85,8 +85,5 @@ menusRouter.post('/:menuTitle', isUser, (req, res) => {
   saveMenu(menu.menuTitle, menu.days);
   res.redirect(`/menus/${menuTitle}`);
 });
-
-
-
 
 module.exports = menusRouter;

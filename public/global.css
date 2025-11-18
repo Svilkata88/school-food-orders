@@ -87,31 +87,73 @@ nav a:hover {
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
+  margin: 0 auto;
+  display: block;
 }
 .create-btn:hover {
   background-color: #40474f;
   opacity: 0.8;
+}
+#edt-btn {
+  width: 80px;
 }
 
 .items-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 8px 0;
+  margin: 15px 0;
+}
+.items-list a:hover {
+  color: #9acfe3;
+}
+.form-menu-day{
+  margin: 0 auto;
+}
+.form-menu-day input[type="text"]  {
+  padding: 5px 15px;
+  border-radius: 25px;
+  background-color: rgba(182, 169, 113, 0.3);
+  color: white;
+  border: 1px solid white;
+}
+.form-menu-day > div {
+  padding: 5px 15px;
+  border-radius: 25px;
+  width: 162px;
+  background-color: rgba(150, 147, 137, 0.3);
+  color: white;
 }
 
-.form-menu-day input[type="text"] {
-  border-radius: 5px;
-  margin-left:10px;
+.menus-wrapper {
+  padding: 20px 0px;
+  display: flex;
+  justify-content: start;
+  gap : 20px;
+}
+.menus {
+  cursor: pointer;
+  background-color: rgba(150, 147, 137, 0.9);
+  border-radius: 10px;
+  padding: 15px 15px;
+  border: 1px solid transparent;
+}
+.menus h4 {
+  margin: 0;
+}
+.menus:hover {
+  border: 1px solid white;
+  background-color: rgba(131, 128, 120, 0.9);
 }
 
 .day-menu {
+  display: block;
   margin:auto;
   width: 400px;
-  background-color: #9acfe3;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3  );
   padding: 15px;
   border-radius: 19px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login-form {
@@ -120,7 +162,6 @@ nav a:hover {
   width: 400px;
   margin: 0 auto;
   padding: 20px;
-  /* background-color: rgba(255, 255, 255, 0.8); */
   border-radius: 25px;
   font-size: 14px;
 } 

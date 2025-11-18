@@ -19,7 +19,7 @@ authRouter.post('/login', async (req, res) => {
             error: 'Please enter both username and password.' });  
     }
 
-    const user = getUser(username); // return user if exists in DB
+    const user = getUser(username); 
    
     if (!user) {
         return res.render('auth/register', { title: 'Register Page', message: 'Create a new account.' });
@@ -68,7 +68,6 @@ authRouter.post('/register', async (req, res) => {
             error: 'Please enter both username and password.' });  
     }
 
-    // Check if we already have this user
     const user = getUser(username);
     if(user) {
         return res.render('auth/login', { 
@@ -83,7 +82,6 @@ authRouter.post('/register', async (req, res) => {
         saveUser(username, hashedPass, role);
     } 
     else if(role === 'owner') {
-        console.log(req.body.role)
         const role = 'owner';
         saveUser(username, hashedPass, role);
     } 

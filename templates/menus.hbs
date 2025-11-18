@@ -8,13 +8,15 @@
     </form>
 {{/if}}
 
-<div>
-    <ul>
+<div> 
+    <div class="menus-wrapper">
         {{#each menus}}
+        <div class="menus">
             <a href="/menus/{{this.menuTitle}}">
-                <h2>{{this.menuTitle}}</h2>
+                <h4>{{this.menuTitle}}</h4>
             </a>
+        </div>
         {{/each}}
-    </ul>
+    </div>   
 </div>
 

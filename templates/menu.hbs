@@ -1,15 +1,17 @@
 <h1>{{menu.menuTitle}}</h1>
 
-<div>
+<div class="day-menu">
     {{#if (eq currentUser.username menu.creator)}}  
-    <button class="create-btn" type="button" onclick="window.location.href='/menus/{{menu.menuTitle}}/edit'">
+    <button id="edt-btn" class="create-btn" type="button" onclick="window.location.href='/menus/{{menu.menuTitle}}/edit'">
         edit
     </button>
     {{/if}}
-    <ul class="items-list">
+    <div class="items-list">
         {{#each menu.days}}
-            <a href="/menus/{{../menu.menuTitle}}/{{@index}}">{{this}}</a>
+        <div class="form-menu-day">
+            <div><a href="/menus/{{../menu.menuTitle}}/{{@index}}">{{this}}</a></div>
+        </div>
         {{/each}}
-    </ul>
+    </div>
 </div> 
 
