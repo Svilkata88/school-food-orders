@@ -1,3 +1,7 @@
+:root {
+  --btn-gold: #d89f1b;
+}
+
 body {
     /* background-color: #7ec0d8; */
     background-image: url('./images/foodbg.png');
@@ -33,7 +37,7 @@ nav {
     align-items: center;
     padding: 0 30px;
     border-radius: 0 0 8px 8px;
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.6  );
 }
 nav ul {
     display: flex;
@@ -43,28 +47,39 @@ nav ul {
     padding: 0;
     overflow: hidden;
 }
+nav ul > li {
+  border-bottom: 1px solid  transparent
+}
 nav a {
   color: white;
   text-decoration: none; 
 }
 nav a:hover {
-  color:#9acfe3;
+  color: var(--btn-gold);
+}
+nav li:hover {
+  border-bottom: 1px solid var(--btn-gold);
 }
 #user-info {
     display: flex;
     gap: 10px;
     align-items: center;
+    border-bottom: 1px solid  transparent
+}
+#user-info a:hover {
+  border-bottom: 1px solid var(--btn-gold);
 }
 
 .body-container {
-    padding: 30px;
+    padding: 30px 100px;
     display: flex;
     flex-direction: column;
     height: calc(100vh - 50px);
     box-sizing: border-box;
 }
 .body-content {
-    border: 2px solid white;
+    border: 2px solid rgb(218, 177, 41);
+    background-color: rgba(0, 0, 0, 0.65  );
     flex: 1; 
     box-sizing: border-box;
     padding: 30px;
@@ -91,7 +106,8 @@ nav a:hover {
   display: block;
 }
 .create-btn:hover {
-  background-color: #40474f;
+  background-color: var(--btn-gold);
+  color: black;
   opacity: 0.8;
 }
 #edt-btn {
@@ -104,9 +120,7 @@ nav a:hover {
   gap: 8px;
   margin: 15px 0;
 }
-.items-list a:hover {
-  color: #9acfe3;
-}
+
 .form-menu-day{
   margin: 0 auto;
 }
@@ -117,12 +131,23 @@ nav a:hover {
   color: white;
   border: 1px solid white;
 }
-.form-menu-day > div {
-  padding: 5px 15px;
+.form-menu-day input[type="text"]:focus {
+  border: 1px solid var(--btn-gold);  
+  outline: none;   
+}
+
+.form-menu-day > a {
+  border: 1px solid transparent;
   border-radius: 25px;
   width: 162px;
   background-color: rgba(150, 147, 137, 0.3);
   color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 15px;
+}
+.form-menu-day > a:hover {
+  border: 1px solid var(--btn-gold);
 }
 
 .menus-wrapper {
@@ -135,14 +160,17 @@ nav a:hover {
   cursor: pointer;
   background-color: rgba(150, 147, 137, 0.9);
   border-radius: 10px;
-  padding: 15px 15px;
   border: 1px solid transparent;
+}
+.menus > a {
+  display: inline-block;
+  padding: 15px 15px;
 }
 .menus h4 {
   margin: 0;
 }
 .menus:hover {
-  border: 1px solid white;
+  border: 1px solid var(--btn-gold);
   background-color: rgba(131, 128, 120, 0.9);
 }
 
@@ -151,9 +179,11 @@ nav a:hover {
   margin:auto;
   width: 400px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.3  );
+  /* background-color: rgba(0, 0, 0, 0.6  ); */
   padding: 15px;
   border-radius: 19px;
+  min-height: 50vh;
+  /* box-shadow: 0 8px 16px #161718; */
 }
 
 .login-form {
@@ -211,4 +241,31 @@ nav a:hover {
   width: 100%;
   outline: none;              /* Remove blue border on focus */
   border-radius: 15px;
+}
+
+.profile-container h2 {
+  text-align: center;
+  font-size: 1.75rem;
+}
+.profile-pic {
+  width: 100px;
+  border-radius: full;
+  margin: 0 auto;
+}
+.profile-pic svg {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  fill: var(--btn-gold);  
+}
+.profile-content {
+  background-color: var(--btn-gold);
+  /* opacity: 0.3; */
+  min-height: 50vh;
+  border-radius: 15px;
+  padding: 20px;
+}
+.profile-container p {
+  color: black !important;
+  text-align: center;
 }
