@@ -7,3 +7,6 @@ node_modules/
 # Ignore local data
 users.json
 menus.json
+
+# docker compose
+docker-compose
