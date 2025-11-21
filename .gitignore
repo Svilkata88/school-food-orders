@@ -9,4 +9,4 @@ users.json
 menus.json
 
 # docker compose
-docker-compose
+docker-compose.yml
