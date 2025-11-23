@@ -1,4 +1,5 @@
 const fs = require('fs');
+const User = require('../db/User'); 
 
 function saveUser(username, hashedPassword, role='user') {
     const user = { username, password: hashedPassword, role };
@@ -54,8 +55,53 @@ function getUsers() {
     }
 }
 
+// --------------------------------------------------------------------
+async function getAllUsers() {
+  try {
+    const users = await User.findAll({
+    });
+    return users;
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    return undefined;
+  }
+}
+
+async function getUserByName(username) {
+  try {
+    const user = await User.findOne({
+      where: { name: username }
+    });
+    return user;
+
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return undefined;
+  }
+}
+
+async function createUser(name, email, password, role) {
+  try {
+    const user = await User.create({
+      name,
+      email,
+      password,
+      role: role || 'user',
+    });
+
+    console.log(`User ${name} created successfully!`);
+    return user;
+  } catch (err) {
+    console.error('Error creating user:', err);
+}}
+
+
 module.exports = {
     saveUser,
     getUsers,
-    getUser
+    getUser,
+    getUserByName,
+    createUser,
+    getAllUsers,
 };

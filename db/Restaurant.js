@@ -24,7 +24,4 @@ const Restaurant = sequelize.define('Restaurant', {
 });
 
 
-Restaurant.hasMany(Order, { foreignKey: 'restaurantId' });
-Order.belongsTo(Restaurant, { foreignKey: 'restaurantId' });
-
 module.exports = Restaurant;

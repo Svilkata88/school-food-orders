@@ -27,7 +27,4 @@ const Menu = sequelize.define('Menu', {
   }
 });
 
-Menu.belongsTo(User, { foreignKey: 'creatorId' });
-User.hasMany(Menu, { foreignKey: 'creatorId' });
-
 module.exports = Menu;

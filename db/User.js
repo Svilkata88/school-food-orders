@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
-const Order = require('./Order'); 
+const sequelize = require('./db');
 
 const User = sequelize.define('User', {
   id: {
@@ -35,7 +34,5 @@ const User = sequelize.define('User', {
   }
 });
 
-User.hasMany(Order, { foreignKey: 'userId' }); 
-Order.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = User;

@@ -8,6 +8,7 @@ const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const menusRouter = require('./routes/menus');
 const {getUserFromToken} = require('./services/utils');
+const sequelize = require('./db/db');
 
 
 const hbs = create({
@@ -16,7 +17,16 @@ const hbs = create({
   layoutsDir: path.join(__dirname, 'templates', 'layouts'),
   partialsDir: path.join(__dirname, 'templates', 'partials'),
   helpers: {
-    eq: (a, b) => a === b
+    eq: (a, b) => a === b,
+    formatDate: (date) => {
+      return new Date(date).toLocaleString("bg-BG", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
   }
 });
 
@@ -43,7 +53,7 @@ app.get('/', (req, res) => {
         message: `Welcome to the Home Page ${currentUser ? currentUser.username : 'Anonymous User'}!`, 
         users,
         currentUser
-       });
+    });
 });
 
 
