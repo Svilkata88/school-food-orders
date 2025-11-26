@@ -85,7 +85,7 @@ nav li:hover {
 }
 .body-content {
     border: 2px solid rgb(218, 177, 41);
-    background-color: rgba(0, 0, 0, 0.65  );
+    background-color: rgba(0, 0, 0, 0.7  );
     /* flex: 1;  */
     box-sizing: border-box;
     padding: 30px;
@@ -257,34 +257,41 @@ nav li:hover {
   outline: none;
 }
 
+
 .profile-container h2 {
   text-align: center;
   font-size: 1.75rem;
-  margin: 10px 0 10px 0;
-
+  margin: 10px 0 0 0;
 }
 .profile-pic {
-  width: 100px;
-  border-radius: full;
+  background-position: center ;
+  background-color: var(--light-yellow);
+  width: 150px;
+  border-radius: 100%;
+  padding: 20px;
   margin: 0 auto;
+  overflow: hidden;
+  transform: translate(0, 50%);
+  border: 2px solid var(--btn-gold);
 }
-.profile-pic svg {
-  text-align: center;
-  width: 100px;
-  height: 100px;
-  fill: var(--gray-primary);  
+.profile-pic img {
+  width: 100%;  
+  height: auto;
 }
 .profile-content {
   background-color: var(--gray-primary);
   min-height: 40vh;
   border-radius: 15px;
   padding: 20px;
+  border: 2px solid var(--btn-gold);
 }
-.profile-container p {
-  color: black !important;
+.profile-container h4:first-child {
+  margin-top: 100px;
+}
+.profile-container h4 {
+  color: var(--light-yellow) !important;
   text-align: center;
 }
-
 .users {
   display: flex;
   flex-direction: column;
