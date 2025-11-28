@@ -1,7 +1,9 @@
 
-{{#if (eq currentUser.role "admin")}}
-    <li><a href="/users">Users</a></li>
-{{/if}}
-
 <h1>{{message}}</h1>
+
+{{#if (eq currentUser.role "admin")}}
+
+    <a href="/users" class="create-btn">Users</a>
+
+{{/if}}
 

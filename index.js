@@ -7,8 +7,8 @@ const {getUsers} = require('./services/userServices');
 const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const menusRouter = require('./routes/menus');
+const ordersRouter = require('./routes/orders');
 const {getUserFromToken} = require('./services/utils');
-const sequelize = require('./db/db');
 
 
 const hbs = create({
@@ -42,6 +42,7 @@ app.use(express.static('public'));
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/menus', menusRouter);
+app.use('/orders', ordersRouter);
 
 app.get('/', (req, res) => {
     const token = req.cookies?.token;

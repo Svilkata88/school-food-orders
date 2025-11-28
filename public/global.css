@@ -107,6 +107,7 @@ nav li:hover {
   font-size: 14px;
   margin: 0 auto;
   display: block;
+  width: fit-content;
 }
 .create-btn:hover {
   background-color: var(--btn-gold);
