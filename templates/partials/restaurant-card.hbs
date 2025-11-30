@@ -1,0 +1,7 @@
+<div class="restaurant-card">
+    <h3>{{this.name}}</h3>
+    <p>Joined on {{this.createdAtFormatted}}</p>
+    {{#if (eq @root.currentUser.role "admin")}}
+        <button type="button" onclick="showModal()" class="delete-btn">Delete</button>
+    {{/if}}
+</div>

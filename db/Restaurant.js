@@ -1,7 +1,5 @@
-
 const { DataTypes } = require('sequelize');
-const sequelize = require('./db'); 
-const Order = require('./Order');     
+const sequelize = require('./db');    
 
 const Restaurant = sequelize.define('Restaurant', {
   id: {
@@ -11,6 +9,10 @@ const Restaurant = sequelize.define('Restaurant', {
   },
   name: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  ownerId: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   createdAt: {

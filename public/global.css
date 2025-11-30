@@ -97,6 +97,7 @@ nav li:hover {
   text-align: center;
 }
 
+/* --- buttons ---------------------------------------------- */
 .create-btn {
   background-color: #40474f;
   color: white;
@@ -117,6 +118,37 @@ nav li:hover {
 #edt-btn {
   width: 80px;
 }
+.delete-btn {
+  background-color: #b33a3a;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.delete-btn:hover {
+  color: black;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.cancel-delete-btn {
+  background-color: #80e485;
+  color: white;
+  border: none;
+  padding: 7px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 65px;
+}
+.cancel-delete-btn:hover {
+  color: black;
+  opacity: 0.8;
+  font-weight: bold;
+}
+/* --- buttons ---------------------------------------------- */
+
 
 .items-list {
   display: flex;
@@ -217,6 +249,7 @@ nav li:hover {
   font-weight: bold;
   color: red;
   font-size: 20px;
+  margin: 20px auto;
 }
 .input-group {
   display: flex;
@@ -258,11 +291,10 @@ nav li:hover {
   outline: none;
 }
 
-
 .profile-container h2 {
   text-align: center;
   font-size: 1.75rem;
-  margin: 10px 0 0 0;
+  margin: 10px 0 120px 0;
 }
 .profile-pic {
   background-position: center ;
@@ -272,7 +304,7 @@ nav li:hover {
   padding: 20px;
   margin: 0 auto;
   overflow: hidden;
-  transform: translate(0, 50%);
+  transform: translate(0, -50%);
   border: 2px solid var(--btn-gold);
 }
 .profile-pic img {
@@ -280,10 +312,12 @@ nav li:hover {
   height: auto;
 }
 .profile-content {
+  display: flex;
+  flex-direction: column;
   background-color: var(--gray-primary);
   min-height: 40vh;
   border-radius: 15px;
-  padding: 20px;
+  /* padding: 20px; */
   border: 2px solid var(--btn-gold);
 }
 .profile-container h4:first-child {
@@ -316,4 +350,66 @@ nav li:hover {
 .user-card:hover {
   border: 1px solid var(--btn-gold);
   background-color: rgba(131, 128, 120, 0.9);
+}
+.user-card span {
+  font-weight: bold;
+  color: var(--light-yellow);
+}
+
+.restaurants-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 15px;
+  max-height: 80%;
+}
+.restaurant-card {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 180px;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--gray-primary);
+  border: 1px solid transparent;
+}
+.restaurant-card:hover {
+  border: 1px solid var(--btn-gold);
+  background-color: rgba(131, 128, 120, 0.9);
+  cursor: pointer;
+}
+.restaurant-card > p {
+  font-size: 12px;
+  margin-top: auto;
+}
+
+.delete-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px;
+  border-radius: 15px;
+  width: 300px;
+  height: 200px;
+  background-color: rgba(187, 187, 84, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.delete-modal-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }

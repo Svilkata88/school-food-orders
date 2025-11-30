@@ -13,7 +13,18 @@ function getUserFromToken(token) {
         }
 }
 
+function formatDate(dateString) {
+    dateString = new Date(dateString).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+
+    return dateString;
+};
+
 module.exports = {
     getUserFromToken,
+    formatDate,
 };
 

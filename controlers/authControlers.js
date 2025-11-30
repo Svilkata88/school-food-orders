@@ -16,7 +16,6 @@ async function postLogin(req, res) {
             error: 'Please enter both username and password.' });  
     }
 
-    // const user = getUser(username); 
     const user = await getUserByName(username);
    
     if (!user) {
@@ -31,8 +30,10 @@ async function postLogin(req, res) {
          });
     }
 
+    const id = user.id;
+    const role = user.role;
     const token = jwt.sign(
-        { username, role: user.role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { id, username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {
@@ -88,8 +89,9 @@ async function postRegister(req, res) {
             error: 'Error creating user. Please try again later.' });  
     }
 
+    const id = user.id;
     const token = jwt.sign(
-        { username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { id, username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {

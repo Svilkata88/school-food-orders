@@ -8,6 +8,7 @@ const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const menusRouter = require('./routes/menus');
 const ordersRouter = require('./routes/orders');
+const restaurantRouter = require('./routes/restaurants');
 const {getUserFromToken} = require('./services/utils');
 
 
@@ -43,6 +44,7 @@ app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/menus', menusRouter);
 app.use('/orders', ordersRouter);
+app.use('/restaurants', restaurantRouter);
 
 app.get('/', (req, res) => {
     const token = req.cookies?.token;
@@ -51,7 +53,7 @@ app.get('/', (req, res) => {
     
     res.render('home', { 
         title: 'Home Page', 
-        message: `Welcome to the Home Page ${currentUser ? currentUser.username : 'Anonymous User'}!`, 
+        message: `Welcome to the LunchBox ${currentUser ? currentUser.username : 'Anonymous User'}!`, 
         users,
         currentUser
     });

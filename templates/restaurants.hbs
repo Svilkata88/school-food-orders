@@ -1,0 +1,19 @@
+
+<h1>{{message}}</h1>
+
+<a href="/restaurants/create" class="create-btn">Create Restaurant</a>
+
+{{#if error}}
+  <div class="error">
+    {{error}}
+  </div>
+{{/if}}
+
+<div class="restaurants-container">
+    {{#each restaurants}}
+        {{> restaurant-card}}
+        {{> delete-modal}}
+    {{/each}}
+</div>
+
+{{>script}}

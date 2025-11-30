@@ -19,3 +19,15 @@ function addMenuRow() {
     divWrapper.append(label, input);
     fieldsContainer.appendChild(divWrapper);
 }
+
+function showModal() {
+    const modal = document.querySelector('.delete-modal');
+    modal.style.display = 'block';
+};
+
+function closeModal() {
+    const modal = document.querySelector('.delete-modal');
+    modal.style.display = 'none';
+};
+
+
