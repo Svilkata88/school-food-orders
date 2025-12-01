@@ -1,4 +1,5 @@
-const { getAllRestaurants, createRestaurant, deleteRestaurant } = require('../services/restaurantServices');
+const { parse } = require('dotenv');
+const { getAllRestaurants, createRestaurant, deleteRestaurant, getRestaurantById } = require('../services/restaurantServices');
 const { getUserFromToken, formatDate } = require('../services/utils');
 
 async function getRestaurantsController(req, res) {
@@ -6,7 +7,7 @@ async function getRestaurantsController(req, res) {
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);
 
-    restaurants.forEach(r => 
+    restaurants?.forEach(r => 
         r.createdAtFormatted = formatDate(r.createdAt)  
     );
 
@@ -32,7 +33,11 @@ async function postCreateRestaurantController(req, res) {
     if (!newRestaurant) {
         const error = 'Restaurant was not created! Please try again.';
     }
-        
+    
+    restaurants?.forEach(r => 
+        r.createdAtFormatted = formatDate(r.createdAt)  
+    );
+
     res.render(
         'restaurants', 
         { 
@@ -58,10 +63,32 @@ async function postDeleteRestaurantController(req, res) {
     // res.render('restaurants', { title: 'Restaurants', message: 'Restaurants', restaurants, currentUser });
 }
 
+async function getRestaurantProfileController(req, res) {
+    const restaurantId = req.params.id; // no need to parse to int here
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);    
+
+    let restaurant = await getRestaurantById(restaurantId);
+    restaurant = restaurant?.get({ plain: true });
+
+    if (restaurant) {
+        restaurant.createdAtFormatted = formatDate(restaurant.createdAt);
+    }
+
+    console.log(restaurant.name);
+
+    res.render('restaurant-profile', { 
+        title: 'Restaurant Profile', 
+        restaurant, 
+        currentUser 
+    });
+}
+
 
 module.exports = {
     getRestaurantsController,
     getCreateRestaurantController,
     postCreateRestaurantController,
-    postDeleteRestaurantController
+    postDeleteRestaurantController,
+    getRestaurantProfileController
 };

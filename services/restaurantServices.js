@@ -36,8 +36,22 @@ async function deleteRestaurant(id) {
     }  
 };
 
+async function getRestaurantById(id) {
+    id = parseInt(id);  
+    try {
+      const restaurant = await Restaurant.findOne(
+        { where: { id }}
+    );
+      return restaurant;
+    } catch (error) {
+      console.error('Error fetching restaurant by ID:', error);
+      return null;
+    }
+  }
+  
 module.exports = {
   getAllRestaurants,
   createRestaurant,
-  deleteRestaurant
+  deleteRestaurant,
+  getRestaurantById
 };
