@@ -267,6 +267,12 @@ nav li:hover {
   font-size: 16px;
   padding-left: 10px;
 }
+.input-group label {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #777;
+  min-width: 80px;
+}
 .input-group input {
   border: none;
   padding: 10px;
@@ -368,13 +374,8 @@ nav li:hover {
   max-height: 80%;
 }
 .restaurant-card {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: 180px;
   padding: 15px;
   border-radius: 10px;
-  color: white;
   background-color: var(--gray-primary);
   border: 1px solid transparent;
 }
@@ -383,9 +384,16 @@ nav li:hover {
   background-color: rgba(131, 128, 120, 0.9);
   cursor: pointer;
 }
-.restaurant-card > p {
+.restaurant-card > a > p {
   font-size: 12px;
   margin-top: auto;
+}
+.restaurant-card > a  {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 150px;
+  color: white
 }
 
 .delete-modal {

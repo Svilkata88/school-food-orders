@@ -1,0 +1,9 @@
+Restaurants:
+- add: 
+    search functionality
+    filtering functionality
+    edit button and functionality only if user is the owner (consider for admin too or partly possible)
+    pics for the profile and for the representation card
+User:
+- add:    
+    favorite restaurants

@@ -24,14 +24,13 @@ async function getCreateRestaurantController(req, res) {
 async function postCreateRestaurantController(req, res) {
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);
-    console.log(currentUser)
     const restaurantName = req.body.name;
     const newRestaurant = await createRestaurant(restaurantName, currentUser);
     const restaurants = await getAllRestaurants();
 
-    const errorMessage = null;
+    let errorMessage = undefined;
     if (!newRestaurant) {
-        const error = 'Restaurant was not created! Please try again.';
+        errorMessage = 'Restaurant was not created! Please try again.';
     }
     
     restaurants?.forEach(r => 
@@ -50,9 +49,7 @@ async function postCreateRestaurantController(req, res) {
 }
 
 async function postDeleteRestaurantController(req, res) {
-    const restaurantId = req.params.id;
-    const token = req.cookies?.token;
-    const currentUser = getUserFromToken(token);    
+    const restaurantId = req.params.id; 
 
     await deleteRestaurant(restaurantId);
     const restaurants = await getAllRestaurants(); 
@@ -60,7 +57,6 @@ async function postDeleteRestaurantController(req, res) {
         r.createdAtFormatted = formatDate(r.createdAt)  
     );
     res.redirect('/restaurants');
-    // res.render('restaurants', { title: 'Restaurants', message: 'Restaurants', restaurants, currentUser });
 }
 
 async function getRestaurantProfileController(req, res) {
@@ -74,8 +70,6 @@ async function getRestaurantProfileController(req, res) {
     if (restaurant) {
         restaurant.createdAtFormatted = formatDate(restaurant.createdAt);
     }
-
-    console.log(restaurant.name);
 
     res.render('restaurant-profile', { 
         title: 'Restaurant Profile', 

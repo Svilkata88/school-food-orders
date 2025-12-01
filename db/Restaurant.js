@@ -9,6 +9,7 @@ const Restaurant = sequelize.define('Restaurant', {
   },
   name: {
     type: DataTypes.STRING,
+    unique: true,
     allowNull: false
   },
   ownerId: {
