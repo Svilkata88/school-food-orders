@@ -1,6 +1,6 @@
 Restaurants:
 - add: 
-    DONE search functionality
+    DONE search functionality, also hide and show for the search btn
     filtering functionality
     edit button and functionality only if user is the owner (consider for admin too or partly possible)
     pics for the profile and for the representation card

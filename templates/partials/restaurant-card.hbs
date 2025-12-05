@@ -7,7 +7,7 @@
 
   {{#if (eq @root.currentUser.role "admin")}}
     <button type="button" onclick="showModal({{this.id}}, '{{@root.deleteUrlBase}}')" class="delete-btn">
-      Delete
+       <i class="fa-solid fa-trash-can"></i>
     </button>
   {{/if}}
 

@@ -33,4 +33,19 @@ function closeModal() {
     modal.style.display = 'none';
 };
 
+const searchBar = document.querySelector('.search-bar-container');
+// Restore state on page load
+const isVisible = localStorage.getItem('searchBarIsVisible') === 'true';
+searchBar.classList.toggle('hidden', !isVisible); // add the class if not visible
+// Toggle function
+function showSearchBar() {
+    const isHidden = searchBar.classList.toggle('hidden');
+    console.log('local storage value:', localStorage.getItem('searchBarIsVisible'));
+    // Save visible state (true if visible, false if hidden)
+    localStorage.setItem('searchBarIsVisible', !isHidden);
+    
+}
+
+
+
 

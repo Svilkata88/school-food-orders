@@ -85,7 +85,7 @@ nav li:hover {
 }
 .body-content {
     border: 2px solid rgb(218, 177, 41);
-    background-color: rgba(0, 0, 0, 0.7  );
+    background-color: rgba(0, 0, 0, 0.8  );
     /* flex: 1;  */
     box-sizing: border-box;
     padding: 30px;
@@ -332,7 +332,7 @@ nav li:hover {
 .profile-container h4:first-child {
   margin-top: 100px;
 }
-.profile-container h4 {
+.profile-container h4, h3 {
   color: var(--light-yellow) !important;
   text-align: center;
 }
@@ -379,9 +379,11 @@ nav li:hover {
   max-height: 80%;
 }
 .restaurant-card {
+  position: relative;
   padding: 15px;
   border-radius: 10px;
   background-color: var(--gray-primary);
+  box-shadow: 0 0 12px rgba(241, 202, 44, 0.799);
   border: 1px solid transparent;
 }
 .restaurant-card:hover {
@@ -426,10 +428,53 @@ nav li:hover {
   gap: 10px;
   margin-top: 10px;
 }
+.delete-modal-actions .delete-btn {
+    position: static;
+}
 
-.favorites {
+.favorites,
+.search-bar {
   color: #d9c787;
   font-size: 2rem  ;
-  padding-left: 10px;
   cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar-container input[type="text"] {
+  width: 300px;
+  height: 25px;
+  border-radius: 15px;
+  padding-left: 15px;
+  outline: none;
+  border: none;
+}
+.search-bar-container button {
+    border-radius: 25px;
+    padding: 5px 5px 0 5px;
+    cursor: pointer;
+}
+.search-bar-container i {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 1.2rem;;
+}
+.restaurant-nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+}
+.hidden {
+  display: none !important;
+}
+.restaurant-nav-container > div {
+  margin: 0px 10px;
 }

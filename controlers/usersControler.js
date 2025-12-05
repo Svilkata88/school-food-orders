@@ -21,7 +21,11 @@ function getUserProfileController(req, res) {
     if(!currentUser){
         return res.status(404).render('404', { title: 'User Not Found', message: 'User does not exist' });
     }
-    res.render('profile', { title: currentUser.username, message: `${currentUser.username} profile`, currentUser });
+    
+    res.render('profile', { 
+        title: currentUser.username, 
+        message: `${currentUser.username} profile`, 
+        currentUser });
 }
 
 async function postDeleteUserController(req, res) {

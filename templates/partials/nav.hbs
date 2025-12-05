@@ -10,14 +10,17 @@
         
         {{#if currentUser}}
             <li><a href="/restaurants">Restaurants</a></li>
-            <li><a href="/menus">Weekly menus</a></li> 
             <li><a href="/orders">Orders</a></li> 
         {{/if}}
     </ul>
 
     <div id="user-info">
         {{#if currentUser}}
+            {{#if (eq currentUser.role "admin")}}
+            <span id="user" style="color: #b33a3a;">{{currentUser.username}}</span>
+            {{else}}
             <span id="user">{{currentUser.username}}</span>
+            {{/if}}
             <a href="/auth/logout">Logout</a>
         {{else}}
             <span>You are not logged in.</span>
