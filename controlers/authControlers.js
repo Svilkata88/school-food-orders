@@ -66,9 +66,9 @@ async function postRegister(req, res) {
             error: 'Please enter both username and password.' });  
     }
 
-    if(username==="admin" && password==="admin123456"){ {
-        role = "admin";  
-    }}
+    if (username === "admin" && password === "admin123456") {
+        role = "admin";
+    }
 
     let user = await getUserByName(username);
     
@@ -101,11 +101,11 @@ async function postRegister(req, res) {
     maxAge: 2 * 60 * 60 * 1000 // 2 hours
     });
     
-    currentUser = user;
+    const currentUser = user ? user.get({ plain: true }) : null; 
+    currentUser.username = username; // in nav element username is used for rendering instead of name
     res.render('home', { 
         title: 'Home Page', 
         message: `Welcome to the Home Page ${currentUser ? currentUser.name : 'Anonymous User'}!`, 
-        // users,
         currentUser
     });
 }

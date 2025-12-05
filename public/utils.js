@@ -20,8 +20,11 @@ function addMenuRow() {
     fieldsContainer.appendChild(divWrapper);
 }
 
-function showModal() {
+function showModal(id, deleteUrlBase) {
+    // const baseUrl = window.location.pathname.replace(/\/$/, ''); fixing passing the base url from the server side
     const modal = document.querySelector('.delete-modal');
+    const form = document.getElementById('confirm-delete-form');
+    form.action = `${deleteUrlBase}/${parseInt(id)}/delete`;
     modal.style.display = 'block';
 };
 

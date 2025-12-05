@@ -3,6 +3,17 @@
 
 <a href="/restaurants/create" class="create-btn">Create Restaurant</a>
 
+<div class="search-bar">
+    <form action="/restaurants/search" method="GET">
+        <input type="text" name="q" placeholder="Search restaurants..." value="{{searchQuery}}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="favorites">
+    <i class="fa-regular fa-heart"></i>
+</div>
+
 {{#if error}}
   <div class="error">
     {{error}}
@@ -12,8 +23,8 @@
 <div class="restaurants-container">
     {{#each restaurants}}
         {{> restaurant-card}}
-        {{> delete-modal}}
     {{/each}}
+    {{> delete-modal}}
 </div>
 
 {{>script}}

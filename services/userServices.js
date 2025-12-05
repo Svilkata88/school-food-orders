@@ -81,6 +81,19 @@ async function getUserByName(username) {
   }
 }
 
+async function getUserById(id) {
+  try {
+    const user = await User.findOne({
+      where: { id: id }
+    });
+    return user;
+
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return undefined;
+  }
+}
+
 async function createUser(name, email, password, role) {
   try {
     const user = await User.create({
@@ -102,6 +115,7 @@ module.exports = {
     getUsers,
     getUser,
     getUserByName,
+    getUserById,
     createUser,
     getAllUsers,
 };

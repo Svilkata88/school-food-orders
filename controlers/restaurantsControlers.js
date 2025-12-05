@@ -1,4 +1,3 @@
-const { parse } = require('dotenv');
 const { getAllRestaurants, createRestaurant, deleteRestaurant, getRestaurantById } = require('../services/restaurantServices');
 const { getUserFromToken, formatDate } = require('../services/utils');
 
@@ -11,7 +10,12 @@ async function getRestaurantsController(req, res) {
         r.createdAtFormatted = formatDate(r.createdAt)  
     );
 
-    res.render('restaurants', { title: 'Restaurants', message: 'Restaurants', restaurants, currentUser });
+    res.render('restaurants', { 
+        title: 'Restaurants', 
+        message: 'Restaurants', 
+        restaurants, 
+        currentUser, 
+        deleteUrlBase: '/restaurants' });
 }
 
 async function getCreateRestaurantController(req, res) {
@@ -78,11 +82,35 @@ async function getRestaurantProfileController(req, res) {
     });
 }
 
+async function getSearchRestaurantsController(req, res) {
+    const query = req.query.q || '';
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);    
+
+    let restaurants = await getAllRestaurants(); // optimization possible here with a search query in the service layer
+
+    if (query) {
+        const lowerCaseQuery = query.toLowerCase();
+        restaurants = restaurants.filter(r => r.name.toLowerCase().includes(lowerCaseQuery));
+    }
+    restaurants?.forEach(r => 
+        r.createdAtFormatted = formatDate(r.createdAt)  
+    );
+
+    res.render('restaurants', { 
+        title: 'Restaurants', 
+        message: 'Restaurants',
+        restaurants,
+        currentUser,
+        searchQuery: query
+    });
+}
 
 module.exports = {
     getRestaurantsController,
     getCreateRestaurantController,
     postCreateRestaurantController,
     postDeleteRestaurantController,
-    getRestaurantProfileController
+    getRestaurantProfileController,
+    getSearchRestaurantsController
 };

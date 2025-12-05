@@ -119,6 +119,9 @@ nav li:hover {
   width: 80px;
 }
 .delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background-color: #b33a3a;
   color: white;
   border: none;
@@ -345,6 +348,7 @@ nav li:hover {
   max-height: 80%;
 }
 .user-card {
+  position: relative;
   width: 200px;
   height: 180px;
   padding: 15px;
@@ -352,6 +356,7 @@ nav li:hover {
   color: white;
   background-color: var(--gray-primary);
   border: 1px solid transparent;
+  box-shadow: 0 0 12px rgba(241, 202, 44, 0.799);
 }
 .user-card:hover {
   border: 1px solid var(--btn-gold);
@@ -420,4 +425,11 @@ nav li:hover {
   justify-content: center;
   gap: 10px;
   margin-top: 10px;
+}
+
+.favorites {
+  color: #d9c787;
+  font-size: 2rem  ;
+  padding-left: 10px;
+  cursor: pointer;
 }
