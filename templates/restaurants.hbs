@@ -15,10 +15,12 @@
 
 <div class="search-bar-container hidden" >
     <form action="/restaurants/search" method="GET">
-        <input type="text" name="q" placeholder="Search restaurants..." value="{{searchQuery}}">
-        <button type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+        <div class="search-bar-input-container">
+            <input type="text" name="q" placeholder="Search restaurants..." value="{{searchQuery}}">
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
     </form>
 </div>
 

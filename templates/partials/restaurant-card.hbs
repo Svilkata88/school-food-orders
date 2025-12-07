@@ -2,12 +2,30 @@
 
   <a href="/restaurants/{{this.id}}" class="restaurant-profile-container">
     <h3>{{this.name}}</h3>
+    <p>Owner: {{this.ownerId}}</p>
     <p>Joined on {{this.createdAtFormatted}}</p>
   </a>
 
   {{#if (eq @root.currentUser.role "admin")}}
-    <button type="button" onclick="showModal({{this.id}}, '{{@root.deleteUrlBase}}')" class="delete-btn">
-       <i class="fa-solid fa-trash-can"></i>
+    <div class="restaurant-card-buttons">
+      {{>delete-restaurant-btn}}
+    </div>
+  {{else}}
+    <div class="restaurant-card-buttons">
+    {{#if (eq @root.currentUser.id this.ownerId)}}
+      {{>edit-restaurant-btn}}
+      {{>delete-restaurant-btn}}
+    {{/if}}
+    </div>
+  {{/if}}
+
+  {{#if isLiked}}
+    <button class="like-btn-liked" onclick="likeUnlike({{this.id}}, this)">
+      <i class="fa-regular fa-heart"></i>
+    </button>
+  {{else}}
+    <button class="like-btn" onclick="likeUnlike({{this.id}}, this)">
+      <i class="fa-regular fa-heart"></i>
     </button>
   {{/if}}
 

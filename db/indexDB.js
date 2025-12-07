@@ -30,10 +30,26 @@ Menu.belongsTo(Restaurant, { foreignKey: 'restaurantId' });
 User.hasMany(Restaurant, { foreignKey: 'ownerId' });
 Restaurant.belongsTo(User, { foreignKey: 'ownerId' });
 
+// Many users can like many restaurants
+Restaurant.belongsToMany(User, { through: '"restLikes"', as: 'likedBy' });
+User.belongsToMany(Restaurant, { through: '"restLikes"', as: 'likedRestaurants' });
+
+async function syncDB() {
+  try {
+    await sequelize.sync();
+    console.log('✔ ✔ ✔ Database synced successfully.');
+  } catch (err) {
+    console.error('❌ ❌ ❌ Unable to sync the database:', err.message);
+  }
+}
+
+
+
 module.exports = {
   sequelize,
   User,
   Order,
   Menu,
-  Restaurant
+  Restaurant,
+  syncDB,
 };

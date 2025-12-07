@@ -6,7 +6,6 @@
 
 body {
     background-image: url('./images/foodbg.png');
-    /* background-attachment: fixed;   */
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
@@ -35,7 +34,7 @@ nav {
     align-items: center;
     padding: 0 30px;
     border-radius: 0 0 8px 8px;
-    background-color: rgba(0, 0, 0, 0.6  );
+    background-color: rgba(0, 0, 0, 0.8  );
 }
 nav ul {
     display: flex;
@@ -86,11 +85,11 @@ nav li:hover {
 .body-content {
     border: 2px solid rgb(218, 177, 41);
     background-color: rgba(0, 0, 0, 0.8  );
-    /* flex: 1;  */
     box-sizing: border-box;
     padding: 30px;
     border-radius: 10px;
     height: 100%;
+    overflow-y: auto;
 }
 
 #create-menu {
@@ -118,14 +117,27 @@ nav li:hover {
 #edt-btn {
   width: 80px;
 }
-.delete-btn {
+.restaurant-card-buttons {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: flex;
+  gap: 5px;
+}
+.delete-btn {
   background-color: #b33a3a;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.edit-btn {
+  background-color: #4ab33a;
+  color: white;
+  border: none;
+  padding: 8px 10px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 12px;
@@ -134,6 +146,35 @@ nav li:hover {
   color: black;
   opacity: 0.8;
   font-weight: bold;
+}
+.edit-btn:hover {
+  color: black;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.like-btn {
+  width: fit-content;
+  font-size: 1.5rem;
+  color: var(--light-yellow);
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.like-btn-liked {
+  width: fit-content;
+  font-size: 1.5rem;
+  color: rgb(209, 31, 31);
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.like-btn-liked i {
+  font-weight: bold;
+}
+.like-btn:hover {
+  opacity: 0.6;
 }
 .cancel-delete-btn {
   background-color: #80e485;
@@ -218,13 +259,16 @@ nav li:hover {
   margin:auto;
   width: 400px;
   color: white;
-  /* background-color: rgba(0, 0, 0, 0.6  ); */
   padding: 15px;
   border-radius: 19px;
   min-height: 50vh;
-  /* box-shadow: 0 8px 16px #161718; */
 }
 
+#register-link {
+  text-align: center;
+  margin-top: 15px;
+  color: white;
+}
 .login-form {
   display: flex;
   flex-direction: column;
@@ -326,7 +370,6 @@ nav li:hover {
   background-color: var(--gray-primary);
   min-height: 40vh;
   border-radius: 15px;
-  /* padding: 20px; */
   border: 2px solid var(--btn-gold);
 }
 .profile-container h4:first-child {
@@ -343,7 +386,6 @@ nav li:hover {
   align-content: flex-start;
   gap: 10px;
   padding: 20px;
-  /* background-color: var(--gray-primary); */
   border-radius: 15px;
   max-height: 80%;
 }
@@ -380,7 +422,7 @@ nav li:hover {
 }
 .restaurant-card {
   position: relative;
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
   background-color: var(--gray-primary);
   box-shadow: 0 0 12px rgba(241, 202, 44, 0.799);
@@ -390,6 +432,11 @@ nav li:hover {
   border: 1px solid var(--btn-gold);
   background-color: rgba(131, 128, 120, 0.9);
   cursor: pointer;
+}
+.restaurant-card h3 {
+  margin-top: 0;
+  text-align: left;
+  width: 60%;
 }
 .restaurant-card > a > p {
   font-size: 12px;
@@ -432,40 +479,6 @@ nav li:hover {
     position: static;
 }
 
-.favorites,
-.search-bar {
-  color: #d9c787;
-  font-size: 2rem  ;
-  cursor: pointer;
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-.search-bar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search-bar-container input[type="text"] {
-  width: 300px;
-  height: 25px;
-  border-radius: 15px;
-  padding-left: 15px;
-  outline: none;
-  border: none;
-}
-.search-bar-container button {
-    border-radius: 25px;
-    padding: 5px 5px 0 5px;
-    cursor: pointer;
-}
-.search-bar-container i {
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
-  font-size: 1.2rem;;
-}
 .restaurant-nav-container {
   display: flex;
   justify-content: center;
@@ -478,3 +491,62 @@ nav li:hover {
 .restaurant-nav-container > div {
   margin: 0px 10px;
 }
+.favorites,
+.search-bar {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.search-bar > i {
+  color: #d9c787;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.favorites > i {
+  color: #d9c787;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.search-bar > i:hover {
+  color: var(--btn-gold);
+}
+.favorites > i:hover {
+  color: var(--btn-gold);
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-bar-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background-color: white;  
+  border-radius: 15px;
+}
+.search-bar-container input[type="text"] {
+  width: 300px;
+  height: 25px;
+  padding: 5px 0 0 15px;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+}
+.search-bar-container button {
+    border-radius: 25px;
+    padding: 5px 5px 0 5px;
+    cursor: pointer;
+    border: none;
+}
+.search-bar-container i {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 1.1rem;;
+}
+
+

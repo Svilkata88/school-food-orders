@@ -1,4 +1,4 @@
-const Order  = require('../db/Order');
+const Order  = require('../db/indexDB');
 
 async function getAllOrders() {
   try {

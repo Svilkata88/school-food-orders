@@ -1,3 +1,5 @@
+const {Restaurant, User}  = require('../db/indexDB');
+
 function addMenuRow() {
     const fieldsContainer = document.getElementById('additional-fields-container');
 
@@ -20,11 +22,11 @@ function addMenuRow() {
     fieldsContainer.appendChild(divWrapper);
 }
 
-function showModal(id, deleteUrlBase) {
+function showModal(id, UrlBase) {
     // const baseUrl = window.location.pathname.replace(/\/$/, ''); fixing passing the base url from the server side
     const modal = document.querySelector('.delete-modal');
     const form = document.getElementById('confirm-delete-form');
-    form.action = `${deleteUrlBase}/${parseInt(id)}/delete`;
+    form.action = `${UrlBase}/${parseInt(id)}/delete`;
     modal.style.display = 'block';
 };
 
@@ -43,9 +45,28 @@ function showSearchBar() {
     console.log('local storage value:', localStorage.getItem('searchBarIsVisible'));
     // Save visible state (true if visible, false if hidden)
     localStorage.setItem('searchBarIsVisible', !isHidden);
-    
 }
 
+function goToPage(url) {
+  window.location.href = url;
+}
+
+async function likeUnlike(restaurantId, btn) {
+  const res = await fetch(`/restaurants/${restaurantId}/like`, {
+    method: 'POST'
+  });
+  const data = await res.json();
+
+  if (data.liked) {
+    btn.classList.remove('like-btn');
+    btn.classList.add('like-btn-liked');
+    btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+  } else {
+    btn.classList.remove('like-btn-liked');
+    btn.classList.add('like-btn');
+    btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+  }
+};
 
 
 

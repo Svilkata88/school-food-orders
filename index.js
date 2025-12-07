@@ -10,6 +10,7 @@ const menusRouter = require('./routes/menus');
 const ordersRouter = require('./routes/orders');
 const restaurantRouter = require('./routes/restaurants');
 const {getUserFromToken} = require('./services/utils');
+const {syncDB} = require('./db/indexDB');
 
 
 const hbs = create({
@@ -60,6 +61,7 @@ app.get('/', (req, res) => {
 });
 
 
+syncDB();
 
 app.listen(Number(process.env.PORT), () => {
   console.log(`🖥 🖥 🖥  Server is running on http://localhost:${Number(process.env.PORT)}`);

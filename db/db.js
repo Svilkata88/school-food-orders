@@ -20,6 +20,7 @@ async function testConnection() {
     console.log('✔ ✔ ✔ Database connection has been established successfully.');
   } catch (err) {
     console.error('❌ Unable to connect to the database:', err.message);
+    setTimeout(testConnection, 5000); 
   }
 }
 

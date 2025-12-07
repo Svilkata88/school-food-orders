@@ -1,5 +1,5 @@
 const fs = require('fs');
-const User = require('../db/User'); 
+const {User} = require('../db/indexDB'); 
 
 function saveUser(username, hashedPassword, role='user') {
     const user = { username, password: hashedPassword, role };
@@ -108,6 +108,7 @@ async function createUser(name, email, password, role) {
   } catch (err) {
     console.error('Error creating user:', err);
 }}
+
 
 
 module.exports = {

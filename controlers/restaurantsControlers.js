@@ -1,4 +1,12 @@
-const { getAllRestaurants, createRestaurant, deleteRestaurant, getRestaurantById } = require('../services/restaurantServices');
+const { 
+    getAllRestaurants, 
+    createRestaurant, 
+    deleteRestaurant, 
+    getRestaurantById,
+    editRestaurant,
+    getLikedRestaurants,
+    likeUnlike,
+} = require('../services/restaurantServices');
 const { getUserFromToken, formatDate } = require('../services/utils');
 
 async function getRestaurantsController(req, res) {
@@ -6,16 +14,24 @@ async function getRestaurantsController(req, res) {
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);
 
-    restaurants?.forEach(r => 
-        r.createdAtFormatted = formatDate(r.createdAt)  
-    );
+    let likedIds = [];
+    if (currentUser) {
+        const likedRestaurants = await getLikedRestaurants(currentUser.id);
+        likedIds = likedRestaurants.map(r => r.id);
+    }
+
+    const finalRestaurants = restaurants.map(r => ({
+        ...r,
+        isLiked: likedIds.includes(r.id),
+        createdAtFormatted: formatDate(r.createdAt)
+    }));
 
     res.render('restaurants', { 
         title: 'Restaurants', 
         message: 'Restaurants', 
-        restaurants, 
+        restaurants: finalRestaurants, 
         currentUser, 
-        deleteUrlBase: '/restaurants' });
+        UrlBase: '/restaurants' });
 }
 
 async function getCreateRestaurantController(req, res) {
@@ -106,11 +122,54 @@ async function getSearchRestaurantsController(req, res) {
     });
 }
 
+async function getEditRestaurantController(req, res) {
+    const restaurantId = req.params.id; // no need to parse to int here
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);    
+
+    let restaurant = await getRestaurantById(restaurantId);
+    restaurant = restaurant?.get({ plain: true });
+
+    if (restaurant) {
+        restaurant.createdAtFormatted = formatDate(restaurant.createdAt);
+    }
+
+    res.render('create-restaurant', { 
+        title: 'Restaurant Profile', 
+        restaurant, 
+        currentUser,
+    });
+}
+
+async function postEditRestaurantController(req, res) {
+    const restaurantId = req.params.id; // no need to parse to int here
+    const newName = req.body.name;
+    const updatedRestaurant = await editRestaurant(restaurantId, newName);
+
+    if (updatedRestaurant) {
+        updatedRestaurant.createdAtFormatted = formatDate(updatedRestaurant.createdAt);
+    }
+
+    res.redirect('/restaurants');
+}
+
+async function postLikeRestaurantController(req, res) {
+    const restaurantId = req.params.id;
+    const token = req.cookies?.token;
+    const currentUser = getUserFromToken(token);  
+    const liked = await likeUnlike(restaurantId, currentUser.id)
+
+    return res.json({ liked: liked });
+}
+
 module.exports = {
     getRestaurantsController,
     getCreateRestaurantController,
     postCreateRestaurantController,
     postDeleteRestaurantController,
     getRestaurantProfileController,
-    getSearchRestaurantsController
+    getSearchRestaurantsController,
+    getEditRestaurantController,
+    postEditRestaurantController,
+    postLikeRestaurantController,
 };
