@@ -170,6 +170,15 @@ async function postLikeRestaurantController(req, res) {
     return res.json({ liked: liked });
 }
 
+// async function getFavoriteRestaurants(req, res) {
+//     const token = req.cookies?.token;
+//     const currentUser = getUserFromToken(token);
+
+//     const likedRestaurants = await getLikedRestaurants(currentUser.id);
+
+
+// }
+
 module.exports = {
     getRestaurantsController,
     getCreateRestaurantController,

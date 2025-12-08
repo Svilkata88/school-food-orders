@@ -416,6 +416,10 @@ nav li:hover {
   color: var(--light-yellow);
 }
 
+/* --- restaurants ---------------------------------------------- */
+.restaurants-wrapper {
+  position: relative;
+}
 .restaurants-container {
   position: relative;
   display: flex;
@@ -455,6 +459,15 @@ nav li:hover {
   width: 200px;
   height: 150px;
   color: white
+}
+
+.liked-restaurants-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: #98c2f1;
+  width: 300px;
+  padding-left: 15px;
 }
 
 .delete-modal {
@@ -555,5 +568,5 @@ nav li:hover {
   border-radius: 25px;
   font-size: 1.1rem;;
 }
-
+/* --- restaurants ---------------------------------------------- */
 

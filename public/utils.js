@@ -68,5 +68,10 @@ async function likeUnlike(restaurantId, btn) {
   }
 };
 
+function showLikedRestaurants() {
+  const likedRest = document.querySelector('.liked-restaurants-container');
+  const isHidden = likedRest.classList.toggle('hidden');
+};
+
 
 

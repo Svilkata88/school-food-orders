@@ -1,42 +1,50 @@
 
-<h1>{{message}}</h1>
+<div class="restaurants-wrapper">
+    <h1>{{message}}</h1>
 
-<a href="/restaurants/create" class="create-btn">Create Restaurant</a>
+    <a href="/restaurants/create" class="create-btn">Create Restaurant</a>
 
-<div class="restaurant-nav-container">
-    <div class="search-bar" onclick="showSearchBar()">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-
-    <div class="favorites">
-        <i class="fa-regular fa-heart"></i>
-    </div>
-</div>
-
-<div class="search-bar-container hidden" >
-    <form action="/restaurants/search" method="GET">
-        <div class="search-bar-input-container">
-            <input type="text" name="q" placeholder="Search restaurants..." value="{{searchQuery}}">
-            <button type="submit">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+    <div class="restaurant-nav-container">
+        <div class="search-bar" onclick="showSearchBar()">
+            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-    </form>
+
+        <div class="favorites" onclick="showLikedRestaurants()">
+            <i class="fa-regular fa-heart"></i>
+        </div>
+    </div>
+
+    <div class="search-bar-container hidden" >
+        <form action="/restaurants/search" method="GET">
+            <div class="search-bar-input-container">
+                <input type="text" name="q" placeholder="Search restaurants..." value="{{searchQuery}}">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    {{#if error}}
+    <div class="error">
+        {{error}}
+    </div>
+    {{/if}}
+
+    <div class="restaurants-container">
+        {{#each restaurants}}
+            {{> restaurant-card}}
+        {{/each}}
+        {{> delete-modal}}
+    </div>
+
+    <div class="liked-restaurants-container hidden">
+        {{#each restaurants}}
+            {{#if isLiked}}
+                <p style="color: white;">{{this.name}}</p>
+            {{/if}}
+        {{/each}}
+    </div>
 </div>
-
-
-
-{{#if error}}
-  <div class="error">
-    {{error}}
-  </div>
-{{/if}}
-
-<div class="restaurants-container">
-    {{#each restaurants}}
-        {{> restaurant-card}}
-    {{/each}}
-    {{> delete-modal}}
-</div>
-
 {{>script}}
