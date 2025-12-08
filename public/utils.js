@@ -1,4 +1,4 @@
-const {Restaurant, User}  = require('../db/indexDB');
+// const {Restaurant, User}  = require('../db/indexDB');
 
 function addMenuRow() {
     const fieldsContainer = document.getElementById('additional-fields-container');

@@ -18,8 +18,9 @@ module.exports = {
     });
 
     await queryInterface.addConstraint('restLikes', {
-      type: 'primary key',
-      fields: ['UserId', 'RestaurantId']
+      type: 'unique',
+      fields: ['UserId', 'RestaurantId'],
+      name: 'unique_user_restaurant_like'
     });
   },
   down: async (queryInterface, Sequelize) => {

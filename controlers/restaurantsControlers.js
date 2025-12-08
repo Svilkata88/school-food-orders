@@ -102,21 +102,29 @@ async function getSearchRestaurantsController(req, res) {
     const query = req.query.q || '';
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);    
-
     let restaurants = await getAllRestaurants(); // optimization possible here with a search query in the service layer
+
+    let likedIds = [];
+    if (currentUser) {
+        const likedRestaurants = await getLikedRestaurants(currentUser.id);
+        likedIds = likedRestaurants.map(r => r.id);
+    }
+
+    let finalRestaurants = restaurants.map(r => ({
+        ...r,
+        isLiked: likedIds.includes(r.id),
+        createdAtFormatted: formatDate(r.createdAt)
+    }));
 
     if (query) {
         const lowerCaseQuery = query.toLowerCase();
-        restaurants = restaurants.filter(r => r.name.toLowerCase().includes(lowerCaseQuery));
+        finalRestaurants = finalRestaurants.filter(r => r.name.toLowerCase().includes(lowerCaseQuery));
     }
-    restaurants?.forEach(r => 
-        r.createdAtFormatted = formatDate(r.createdAt)  
-    );
 
     res.render('restaurants', { 
         title: 'Restaurants', 
         message: 'Restaurants',
-        restaurants,
+        restaurants: finalRestaurants,
         currentUser,
         searchQuery: query
     });

@@ -4,8 +4,10 @@
     <p>Role: <span>{{this.role}}</span></p>
     <p>Created at: <span>{{formatDate this.createdAt}} | ID: <span>{{this.id}}</span></span></p>
     {{#if (eq @root.currentUser.role "admin")}}
-        <button type="button" onclick="showModal({{this.id}}, '{{@root.deleteUrlBase}}')" class="delete-btn">
-            <i class="fa-solid fa-trash-can"></i>
-        </button>
+        <div class="user-card-buttons">
+            <button type="button" onclick="showModal({{this.id}}, '{{@root.deleteUrlBase}}')" class="delete-btn">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
     {{/if}}
 </div>
