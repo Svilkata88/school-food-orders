@@ -429,7 +429,7 @@ nav li:hover {
   gap: 10px;
   padding: 20px;
   border-radius: 15px;
-  max-height: 80%;
+  /* max-height: 80%; */
 }
 .restaurant-card {
   position: relative;
@@ -465,9 +465,24 @@ nav li:hover {
   position: absolute;
   right: 20px;
   top: 20px;
-  background-color: #98c2f1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   width: 300px;
-  padding-left: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--gray-primary);
+  box-shadow: 0 0 12px rgba(241, 202, 44, 0.799);
+  border: 1px solid transparent;
+}
+.liked-restaurants-container a {
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+.liked-restaurants-container a:hover {
+  width: fit-content;
+  color: black !important;
+  background-color: var(--btn-gold);
 }
 
 .delete-modal {

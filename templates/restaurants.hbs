@@ -42,7 +42,7 @@
     <div class="liked-restaurants-container hidden">
         {{#each restaurants}}
             {{#if isLiked}}
-                <p style="color: white;">{{this.name}}</p>
+                <a href="/restaurants/{{this.id}}" style="color: white;">{{this.name}}</a>
             {{/if}}
         {{/each}}
     </div>
