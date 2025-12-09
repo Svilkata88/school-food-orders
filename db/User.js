@@ -31,6 +31,11 @@ const User = sequelize.define('User', {
   updatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW
+  },
+  image: {
+    type: DataTypes.STRING,   
+    allowNull: true,          
+    defaultValue: '/images/anonymous-4.png' 
   }
 });
 

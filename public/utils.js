@@ -1,4 +1,4 @@
-// const {Restaurant, User}  = require('../db/indexDB');
+
 
 function addMenuRow() {
     const fieldsContainer = document.getElementById('additional-fields-container');
@@ -38,13 +38,14 @@ function closeModal() {
 const searchBar = document.querySelector('.search-bar-container');
 // Restore state on page load
 const isVisible = localStorage.getItem('searchBarIsVisible') === 'true';
-searchBar.classList.toggle('hidden', !isVisible); // add the class if not visible
+if(searchBar) {
+    searchBar.classList.toggle('hidden', !isVisible); 
+  }
 // Toggle function
 function showSearchBar() {
-    const isHidden = searchBar.classList.toggle('hidden');
-    console.log('local storage value:', localStorage.getItem('searchBarIsVisible'));
-    // Save visible state (true if visible, false if hidden)
-    localStorage.setItem('searchBarIsVisible', !isHidden);
+  const isHidden = searchBar.classList.toggle('hidden');
+  // Save visible state (true if visible, false if hidden)
+  localStorage.setItem('searchBarIsVisible', !isHidden);
 }
 
 function goToPage(url) {
@@ -73,5 +74,8 @@ function showLikedRestaurants() {
   const isHidden = likedRest.classList.toggle('hidden');
 };
 
-
-
+const profilePicInput = document.getElementById('upload-profile-pic');
+profilePicInput.addEventListener('change', () => {
+  profilePicInput.closest('form').submit();
+  console.log('Profile pic changed!')
+});

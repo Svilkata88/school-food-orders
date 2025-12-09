@@ -2,8 +2,25 @@
     <div class="profile-container">
         <h2 style="color: white">Profile</h2>     
         <div class="profile-content">
-            <div class="profile-pic">
-                <img src="/images/anonymous-4.png" alt="anonymous-user">
+            <div class="profile-pic-wrapper">
+                <div class="profile-pic">
+                    <img src={{currentUser.image}} alt="anonymous-user">
+                </div>
+                <form action="/users/{{currentUser.id}}/upload-profile" method="POST" enctype="multipart/form-data">
+
+                    <input 
+                        type="file" 
+                        name="image" 
+                        id="upload-profile-pic" 
+                        accept="image/*" 
+                        hidden
+                    >
+
+                    <label for="upload-profile-pic" class="upload-pic-btn">
+                        <i class="fa-solid fa-camera"></i>
+                    </label>
+
+                </form>
             </div> 
             <h3 style="color: white">Userame: {{currentUser.username}}</h3>
             <h4 style="color: white">Role: {{currentUser.role}}</h4>
@@ -12,4 +29,5 @@
     </div>
 </div>
 
+{{>script}}
 

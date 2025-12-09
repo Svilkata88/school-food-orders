@@ -32,8 +32,10 @@ async function postLogin(req, res) {
 
     const id = user.id;
     const role = user.role;
+    const image = user.image;
+    
     const token = jwt.sign(
-        { id, username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { id, username, role, image }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {
@@ -43,7 +45,6 @@ async function postLogin(req, res) {
         maxAge: 2 * 60 * 60 * 1000 // 2 hours
     });
 
-    // const users = getUsers();
     res.redirect('/');
 }
 
@@ -57,7 +58,7 @@ function getRegister(req, res) {
 }
 
 async function postRegister(req, res) {
-    let { username,email, password, role } = req.body;
+    let { username, email, password, role } = req.body;
     
     if(!username || !password || !email) {
         return res.render('auth/login', { 
@@ -90,8 +91,9 @@ async function postRegister(req, res) {
     }
 
     const id = user.id;
+    const image = user.image || 'images/anonymous-4.png';
     const token = jwt.sign(
-        { id, username, role }, process.env.JWT_SECRET, { expiresIn: '2h' }             
+        { id, username, role, image }, process.env.JWT_SECRET, { expiresIn: '2h' }             
     );
 
     res.cookie('token', token, {
