@@ -26,12 +26,15 @@ async function createRestaurant(name, owner) {
     }
 };
 
-async function editRestaurant(id, newName) {
+async function editRestaurant(id, newName, imagePath) {
   id = parseInt(id, 10);
 
   try {
     const [updatedCount] = await Restaurant.update(
-      {name: newName},
+      {
+        name: newName,
+        image: imagePath
+      },
       {where: { id }}
     );
 

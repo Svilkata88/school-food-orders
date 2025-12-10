@@ -343,6 +343,10 @@ nav li:hover {
   outline: none;              
   border-radius: 15px;
 }
+.input-group > .restaurant-img-input {
+  background-color: #4ab33a;
+  width: fit-content;
+}
 .input-group > select {
   border: none;
   padding: 10px;
@@ -373,7 +377,8 @@ nav li:hover {
 .profile-pic {
   background-position: center ;
   background-color: var(--light-yellow);
-  width: 150px;
+  width: 155px;
+  aspect-ratio: 1 / 1;
   border-radius: 100%;
   margin: 0 auto;
   overflow: hidden;
@@ -381,7 +386,9 @@ nav li:hover {
 }
 .profile-pic img {
   width: 100%;  
-  height: auto;
+  height: 1/1;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 .profile-content {
   display: flex;

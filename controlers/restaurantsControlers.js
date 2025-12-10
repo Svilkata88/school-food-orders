@@ -45,7 +45,8 @@ async function postCreateRestaurantController(req, res) {
     const token = req.cookies?.token;
     const currentUser = getUserFromToken(token);
     const restaurantName = req.body.name;
-    const newRestaurant = await createRestaurant(restaurantName, currentUser);
+    const imagePath = `/uploads/profile/${req.file.filename}`;
+    const newRestaurant = await createRestaurant(restaurantName, currentUser, imagePath);
     const restaurants = await getAllRestaurants();
 
     let errorMessage = undefined;

@@ -6,6 +6,19 @@
             {{#if restaurant}}value="{{restaurant.name}}"{{/if}}
         >
     </div>
+    <div class="input-group">
+         <input 
+            type="file" 
+            name="image" 
+            id="upload-profile-pic" 
+            accept="image/*" 
+            hidden
+        >
+        <label for="upload-profile-pic" class="restaurant-img-input">
+            <i class="fa-solid fa-camera" style="color: black; font-size:larger;"></i>
+            <p>ДА СЕ НАПРАВИ</p>
+        </label>
+    </div>
     <button type="submit">{{#if restaurant}}Edit{{else}}Create{{/if}}</button>
 </form>
 
