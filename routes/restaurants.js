@@ -1,5 +1,6 @@
 const express = require('express');
 const isUser = require('../middleware/isUser');
+const upload = require('../middleware/upload')
 const { 
     getRestaurantsController, 
     getCreateRestaurantController, 
@@ -16,7 +17,7 @@ const restaurantRouter = express.Router();
 
 restaurantRouter.get('/', isUser, getRestaurantsController);
 restaurantRouter.get('/create', isUser, getCreateRestaurantController);
-restaurantRouter.post('/create', isUser, postCreateRestaurantController);
+restaurantRouter.post('/create', isUser, upload.single('image'), postCreateRestaurantController);
 restaurantRouter.get('/search', isUser, getSearchRestaurantsController);
 restaurantRouter.post('/:id/delete', isUser, postDeleteRestaurantController);
 restaurantRouter.get('/:id/edit', isUser, getEditRestaurantController);

@@ -207,6 +207,18 @@ nav li:hover {
 .upload-pic-btn:hover {
   opacity: 0.9;
 }
+.upload-restaurant-btn {       
+  width: fit-content;
+  background: white;
+  border-radius: 25px;
+  padding: 5px 10px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 auto 20px;
+}
+.upload-restaurant-btn i {
+  color: black !important;
+}
 /* --- buttons ---------------------------------------------- */
 
 
@@ -351,7 +363,6 @@ nav li:hover {
   padding: 10px;
   width: 100%;
 }
-
 .input-group > select > option {
   text-align: center;
   letter-spacing: 2px;
@@ -371,7 +382,7 @@ nav li:hover {
   width: 200px;
 }
 .profile-pic {
-  background-position: center ;
+  background-position: center;
   background-color: var(--light-yellow);
   width: 150px;
   border-radius: 100%;
@@ -478,6 +489,20 @@ nav li:hover {
   width: 200px;
   height: 150px;
   color: white
+}
+
+.restaurant-pic-wrapper {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: calc(100% - 20px); 
+  /* aspect-ratio: 2 / 1; */
+  background-position: center;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.restaurant-pic-wrapper img {
+  width: 100%;  
+  height: auto;
 }
 
 .liked-restaurants-container {

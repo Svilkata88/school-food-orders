@@ -75,7 +75,22 @@ function showLikedRestaurants() {
 };
 
 const profilePicInput = document.getElementById('upload-profile-pic');
-profilePicInput.addEventListener('change', () => {
+if(profilePicInput) {
+  profilePicInput.addEventListener('change', () => {
   profilePicInput.closest('form').submit();
   console.log('Profile pic changed!')
 });
+}
+
+
+const input =  document.querySelector('input[type="file"]');
+const img = document.querySelector('.restaurant-pic-wrapper img');
+if (input && img) {
+  input.addEventListener('change', (e) => {
+
+    const newImage = e.target.files[0];
+    if (!newImage) return;
+
+    img.src = URL.createObjectURL(newImage);
+  });
+}

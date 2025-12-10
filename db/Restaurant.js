@@ -23,7 +23,12 @@ const Restaurant = sequelize.define('Restaurant', {
   updatedAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW
-  }
+  },
+  image: {
+      type: DataTypes.STRING,   
+      allowNull: true,          
+      defaultValue: '/images/default-restaurant.jpg' 
+    }
 });
 
 

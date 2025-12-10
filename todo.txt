@@ -3,7 +3,7 @@ Restaurants:
     DONE search functionality, also hide and show for the search btn
     filtering functionality
     DONE edit button and functionality only if user is the owner (consider for admin too or partly possible)
-    50% DONE (1.update token image after update the image) pics for the profile and for the representation card
+    50% DONE (1.update token image after update the image, delete old pic when replaced) pics for the profile and for the representation card
     Done like / unlike restaurants
 User:
 - add:    

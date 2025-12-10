@@ -1,10 +1,36 @@
 
-<form action="{{#if restaurant}}/restaurants/{{restaurant.id}}/edit{{else}}/restaurants/create{{/if}}" method="POST" class="login-form">
+<form action="{{#if restaurant}}/restaurants/{{restaurant.id}}/edit{{else}}/restaurants/create{{/if}}" 
+        method="POST"  
+        enctype="multipart/form-data"
+        class="login-form">
+        
+    <div class="restaurant-pic-wrapper">
+        <img src="
+            {{#if restaurant}}
+                {{restaurant.image}}
+            {{else}}
+                /images/default-restaurant.jpg
+            {{/if}}" 
+        alt="default-restaurant-image">
+    </div>
     <div class="input-group">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required
             {{#if restaurant}}value="{{restaurant.name}}"{{/if}}
         >
+    </div>
+    <div class="upload-restaurant-btn">
+        <input 
+            type="file" 
+            name="image" 
+            id="upload-restaurant-pic" 
+            accept="image/*" 
+            hidden
+        >
+
+        <label for="upload-restaurant-pic" class="upload-restaurant-btn">
+            <i class="fa-solid fa-camera"></i>
+        </label>
     </div>
     <button type="submit">{{#if restaurant}}Edit{{else}}Create{{/if}}</button>
 </form>

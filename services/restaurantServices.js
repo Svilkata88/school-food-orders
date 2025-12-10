@@ -13,11 +13,12 @@ async function getAllRestaurants() {
   }
 };
 
-async function createRestaurant(name, owner) {
+async function createRestaurant(name, owner, imagePath) {
     try {
       const newRestaurant = await Restaurant.create({ 
         name,
-        ownerId: owner.id
+        ownerId: owner.id,
+        image: imagePath,
     });
       return newRestaurant;  
     } catch (error) {
