@@ -23,7 +23,7 @@ function getUserProfileController(req, res) {
     if(!currentUser){
         return res.status(404).render('404', { title: 'User Not Found', message: 'User does not exist' });
     }
-    console.log(currentUser.image)
+
     res.render('profile', { 
         title: currentUser.username, 
         message: `${currentUser.username} profile`, 
